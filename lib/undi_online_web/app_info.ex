@@ -8,11 +8,17 @@ defmodule UndiOnlineWeb.AppInfo do
     field :app_name, :string, default: Application.compile_env(:undi_online, :app_name)
     field :page_url, :string, default: Application.compile_env(:undi_online, :page_url)
     field :company_name, :string, default: Application.compile_env(:undi_online, :company_name)
-    field :company_address, :string, default: Application.compile_env(:undi_online, :company_address)
+
+    field :company_address, :string,
+      default: Application.compile_env(:undi_online, :company_address)
+
     field :company_zip, :string, default: Application.compile_env(:undi_online, :company_zip)
     field :company_city, :string, default: Application.compile_env(:undi_online, :company_city)
     field :company_state, :string, default: Application.compile_env(:undi_online, :company_state)
-    field :company_country, :string, default: Application.compile_env(:undi_online, :company_country)
+
+    field :company_country, :string,
+      default: Application.compile_env(:undi_online, :company_country)
+
     field :contact_name, :string, default: Application.compile_env(:undi_online, :contact_name)
     field :contact_phone, :string, default: Application.compile_env(:undi_online, :contact_phone)
     field :contact_email, :string, default: Application.compile_env(:undi_online, :contact_email)

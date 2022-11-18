@@ -147,8 +147,7 @@ defmodule UndiOnline.Accounts do
 
   """
   def list_memberships(account) do
-    (
-      from m in Membership,
+    from(m in Membership,
       join: mm in assoc(m, :member)
     )
     |> Repo.all(account_id: account.id)
@@ -250,8 +249,7 @@ defmodule UndiOnline.Accounts do
 
   """
   def list_invitations(account) do
-    (
-      from m in Invitation,
+    from(m in Invitation,
       order_by: [:inserted_at]
     )
     |> Repo.all(account_id: account.id)
@@ -267,8 +265,7 @@ defmodule UndiOnline.Accounts do
 
   """
   def list_invitations_for_user(user) do
-    (
-      from i in Invitation,
+    from(i in Invitation,
       where: i.email == ^user.email,
       where: is_nil(i.accepted_at),
       order_by: [:inserted_at],
@@ -377,5 +374,6 @@ defmodule UndiOnline.Accounts do
 
     result
   end
+
   def invite_member(result), do: result
 end

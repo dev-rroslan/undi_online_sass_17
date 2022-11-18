@@ -94,6 +94,7 @@ defmodule UndiOnlineWeb.UserAuth do
   def fetch_current_user(conn, _opts) do
     {user_token, conn} = ensure_user_token(conn)
     user = user_token && Users.get_user_by_session_token(user_token)
+
     account =
       case user do
         nil -> nil
@@ -187,6 +188,7 @@ defmodule UndiOnlineWeb.UserAuth do
     case session do
       %{"user_token" => user_token} ->
         assign_new_current_user_and_account(params, session, socket, user_token)
+
       %{} ->
         Phoenix.Component.assign_new(socket, :current_user, fn -> nil end)
     end
@@ -199,12 +201,12 @@ defmodule UndiOnlineWeb.UserAuth do
         Users.get_user_by_session_token(user_token)
       end)
 
-      socket
-      |> Phoenix.Component.assign_new(:current_account, fn ->
-        if user = socket.assigns.current_user do
-          get_current_account(user, params, session)
-        end
-      end)
+    socket
+    |> Phoenix.Component.assign_new(:current_account, fn ->
+      if user = socket.assigns.current_user do
+        get_current_account(user, params, session)
+      end
+    end)
   end
 
   @doc """

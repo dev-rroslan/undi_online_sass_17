@@ -9,6 +9,7 @@ defmodule UndiOnlineWeb.LayoutComponents do
 
   attr :mobile, :boolean, default: false
   attr :current_user, :any
+
   def user_menu(%{mobile: true} = assigns) do
     ~H"""
     <.link

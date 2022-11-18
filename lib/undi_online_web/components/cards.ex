@@ -21,6 +21,7 @@ defmodule UndiOnlineWeb.Components.Cards do
   slot :title
   slot :body
   slot :inner_block, required: true
+
   def card(assigns) do
     ~H"""
     <div

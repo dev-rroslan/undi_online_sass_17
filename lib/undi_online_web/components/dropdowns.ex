@@ -35,12 +35,15 @@ defmodule UndiOnlineWeb.Components.Dropdowns do
   attr :align, :string, default: "left"
   attr :rest, :global, default: %{"class" => "relative inline-block"}
   slot :action, default: []
+
   slot :toggle do
     attr :class, :any
   end
+
   slot :menu do
     attr :align, :string
   end
+
   def dropdown(assigns) do
     assigns =
       assigns
@@ -70,6 +73,7 @@ defmodule UndiOnlineWeb.Components.Dropdowns do
   attr :class, :any
   attr :rest, :global, default: %{"class" => "flex items-center gap-2"}
   slot :inner_block
+
   def dropdown_toggle(%{type: type} = assigns) when type in ["a", "link"] do
     ~H"""
     <a href="#" phx-click={@on_click} {@rest}>
@@ -89,8 +93,12 @@ defmodule UndiOnlineWeb.Components.Dropdowns do
   attr :id, :string, default: "dropdown-menu"
   attr :align, :string, default: "left"
   attr :class, :any
-  attr :fallback_class, :string, default: "border shadow-xl menu bg-base-100 border-base-200 rounded-box w-52"
+
+  attr :fallback_class, :string,
+    default: "border shadow-xl menu bg-base-100 border-base-200 rounded-box w-52"
+
   slot :inner_block
+
   def dropdown_menu(%{align: "right"} = assigns) do
     ~H"""
     <.focus_wrap id={@id} phx-click-away={hide("##{@id}")} phx-window-keydown={hide("##{@id}")} phx-key="escape" class="absolute right-0 z-10 hidden origin-top-right">
@@ -125,13 +133,22 @@ defmodule UndiOnlineWeb.Components.Dropdowns do
     js
     |> JS.toggle(
       to: id,
-      in: {"transition ease-out duration-200", "opacity-0 translate-y-1", "opacity-100 translate-y-0"},
-      out: {"transition ease-in duration-150", "opacity-100 translate-y-0", "opacity-0 translate-y-1"}
+      in:
+        {"transition ease-out duration-200", "opacity-0 translate-y-1",
+         "opacity-100 translate-y-0"},
+      out:
+        {"transition ease-in duration-150", "opacity-100 translate-y-0",
+         "opacity-0 translate-y-1"}
     )
   end
 
   defp hide(id, js \\ %JS{}) do
     js
-    |> JS.hide(to: id, transition: {"transition ease-in duration-150", "opacity-100 translate-y-0", "opacity-0 translate-y-1"})
+    |> JS.hide(
+      to: id,
+      transition:
+        {"transition ease-in duration-150", "opacity-100 translate-y-0",
+         "opacity-0 translate-y-1"}
+    )
   end
 end

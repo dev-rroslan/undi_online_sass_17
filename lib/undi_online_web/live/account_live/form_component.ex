@@ -21,6 +21,7 @@ defmodule UndiOnlineWeb.AccountLive.FormComponent do
   @impl true
   def handle_event("save", %{"account" => account_params}, socket) do
     user = socket.assigns.current_user
+
     case Accounts.create_account(user, account_params) do
       {:ok, account} ->
         Accounts.create_membership(account, user, %{role: :owner})

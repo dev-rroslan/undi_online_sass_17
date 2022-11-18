@@ -18,7 +18,7 @@ defmodule UndiOnline.Application do
       UndiOnlineWeb.Endpoint,
       # Start a worker by calling: UndiOnline.Worker.start_link(arg)
       # {UndiOnline.Worker, arg}
-      {Oban, oban_config()},
+      {Oban, oban_config()}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

@@ -13,14 +13,13 @@ config :undi_online,
   ecto_repos: [UndiOnline.Repo],
   generators: [binary_id: true]
 
-config :undi_online, UndiOnline.Repo,
-  migration_primary_key: [name: :id, type: :binary_id]
+config :undi_online, UndiOnline.Repo, migration_primary_key: [name: :id, type: :binary_id]
 
 config :undi_online,
   require_user_confirmation: true,
-  app_name: "UndiOnline",
-  page_url: "undi_online.com",
-  company_name: "UndiOnline Inc",
+  app_name: "Undi.Online",
+  page_url: "undi.online",
+  company_name: "UndiOnline Ent",
   company_address: "26955 Fritsch Bridge",
   company_zip: "54933-7180",
   company_city: "San Fransisco",
@@ -28,8 +27,8 @@ config :undi_online,
   company_country: "United States",
   contact_name: "John Doe",
   contact_phone: "+1 (335) 555-2036",
-  contact_email: "john.doe@undi_online.com",
-  from_email: "john.doe@undi_online.com"
+  contact_email: "john.doe@undi.online",
+  from_email: "john.doe@undi.online"
 
 # Configures the endpoint
 config :undi_online, UndiOnlineWeb.Endpoint,
@@ -86,9 +85,9 @@ config :undi_online, Oban,
   repo: UndiOnline.Repo,
   queues: [default: 10, mailers: 20, high: 50, low: 5],
   plugins: [
-    {Oban.Plugins.Pruner, max_age: (3600 * 24)},
+    {Oban.Plugins.Pruner, max_age: 3600 * 24},
     {Oban.Plugins.Cron,
-      crontab: [
+     crontab: [
        # {"0 2 * * *", UndiOnline.Workers.DailyDigestWorker},
        # {"@reboot", UndiOnline.Workers.StripeSyncWorker}
      ]}
